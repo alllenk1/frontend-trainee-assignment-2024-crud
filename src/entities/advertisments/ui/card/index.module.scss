@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 345px;
+}
+
+.image {
+    height: auto;
+    max-height: 240px;
+
+    object-position: center;
+    object-fit: cover;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    width: fit-content;
+}

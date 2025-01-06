@@ -4,8 +4,11 @@ import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { AppProvider } from '@toolpad/core/nextjs';
 import type { ReactNode } from 'react';
 import { Suspense } from 'react';
+import { Provider } from 'react-redux';
 
-import { AppTitle } from '@/shared/ui/app-title';
+import { store } from '@/app/store/store';
+
+import { AppTitle } from '@/shared/ui';
 
 const NAVIGATION = [
     {
@@ -27,15 +30,11 @@ export default function Layout({ children }: LayoutProps) {
         <html lang="ru" suppressHydrationWarning>
             <body>
                 <Suspense>
-                    <AppProvider navigation={NAVIGATION}>
-                        <DashboardLayout
-                            slots={{
-                                appTitle: AppTitle,
-                            }}
-                        >
-                            {children}
-                        </DashboardLayout>
-                    </AppProvider>
+                    <Provider store={store}>
+                        <AppProvider navigation={NAVIGATION}>
+                            <DashboardLayout slots={{ appTitle: AppTitle }}>{children}</DashboardLayout>
+                        </AppProvider>
+                    </Provider>
                 </Suspense>
             </body>
         </html>
