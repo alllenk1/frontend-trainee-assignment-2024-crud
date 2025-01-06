@@ -3,19 +3,19 @@ import { Box, Typography } from '@mui/material';
 
 import type { Advertisement } from '@/entities/advertisements';
 
-import { AdvertisementCard } from './card';
+import { AdvertisementsCard } from './card';
 import style from './index.module.scss';
 
 type AdvertisementCardsProps = {
     filteredAdvertisements: Advertisement[];
 };
 
-export const AdvertisementCards = ({ filteredAdvertisements }: AdvertisementCardsProps) => {
+export const AdvertisementsCards = ({ filteredAdvertisements }: AdvertisementCardsProps) => {
     return (
         <Box className={style.content}>
             {filteredAdvertisements.length > 0 ? (
                 filteredAdvertisements.map((item) => (
-                    <AdvertisementCard
+                    <AdvertisementsCard
                         key={item.id}
                         id={item.id}
                         name={item.name}

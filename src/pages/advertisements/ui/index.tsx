@@ -6,17 +6,19 @@ import type { Breadcrumb } from '@toolpad/core';
 import { useMemo, useState } from 'react';
 
 import type { Advertisement } from '@/entities/advertisements';
+import { AdvertisementsForm } from '@/entities/advertisements';
 import { useGetAdvertisementsQuery } from '@/entities/advertisements/api';
-import { AdvertisementCards, AdvertisementSearchBar } from '@/entities/advertisements/ui';
+import { AdvertisementsCards, AdvertisementsSearchBar } from '@/entities/advertisements/ui';
 
 import { SkeletonCards } from '@/shared/ui';
 
 export const AdvertisementsPageComponent = () => {
     const activePage = useActivePage();
 
-    const { data, isLoading } = useGetAdvertisementsQuery({ limit: 10 });
-
+    const [limit, setLimit] = useState<number | undefined>(undefined);
     const [searchString, setSearchString] = useState<string>('');
+
+    const { data, isLoading } = useGetAdvertisementsQuery({ limit: limit || 10 });
 
     const breadcrumbs: Breadcrumb[] = [{ title: 'Главная', path: '/' }, ...(activePage ? activePage.breadcrumbs : [])];
 
@@ -30,8 +32,9 @@ export const AdvertisementsPageComponent = () => {
 
     return (
         <PageContainer title="Все объявления" breadcrumbs={breadcrumbs}>
-            <AdvertisementSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
-            {isLoading ? <SkeletonCards /> : <AdvertisementCards filteredAdvertisements={filteredAdvertisements} />}
+            <AdvertisementsSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
+            {!isLoading && <AdvertisementsForm limit={limit} onChangeLimit={setLimit} />}
+            {isLoading ? <SkeletonCards /> : <AdvertisementsCards filteredAdvertisements={filteredAdvertisements} />}
         </PageContainer>
     );
 };

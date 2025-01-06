@@ -8,7 +8,7 @@ type AdvertisementSearchBarProps = {
     onChangeSearchString: (value: string) => void;
 };
 
-export const AdvertisementSearchBar = ({ searchString, onChangeSearchString }: AdvertisementSearchBarProps) => {
+export const AdvertisementsSearchBar = ({ searchString, onChangeSearchString }: AdvertisementSearchBarProps) => {
     const handleChangeSearchQuery = (event: ChangeEvent<HTMLInputElement>) => {
         onChangeSearchString(event.target.value);
     };

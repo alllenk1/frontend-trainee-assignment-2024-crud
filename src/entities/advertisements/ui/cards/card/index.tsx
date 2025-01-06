@@ -8,7 +8,7 @@ import { dateFormat } from '@/shared/helpers';
 
 import style from './index.module.scss';
 
-export const AdvertisementCard = ({ id, name, description, imageUrl, createdAt, price, likes, views }: Advertisement) => {
+export const AdvertisementsCard = ({ id, name, description, imageUrl, createdAt, price, likes, views }: Advertisement) => {
     console.log(id);
     return (
         <Card className={style.card}>
