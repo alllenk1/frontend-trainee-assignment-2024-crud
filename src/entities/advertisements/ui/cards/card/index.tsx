@@ -2,7 +2,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Card, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
 
-import { Advertisement } from '@/entities/advertisments';
+import type { Advertisement } from '@/entities/advertisements';
 
 import { dateFormat } from '@/shared/helpers';
 
@@ -10,7 +10,6 @@ import style from './index.module.scss';
 
 export const AdvertisementCard = ({ id, name, description, imageUrl, createdAt, price, likes, views }: Advertisement) => {
     console.log(id);
-
     return (
         <Card className={style.card}>
             <CardHeader title={name} subheader={dateFormat(createdAt)} />

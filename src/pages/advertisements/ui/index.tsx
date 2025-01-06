@@ -1,37 +1,37 @@
 'use client';
 
+import * as React from 'react';
 import { PageContainer, useActivePage } from '@toolpad/core';
 import type { Breadcrumb } from '@toolpad/core';
+import { useMemo, useState } from 'react';
 
-import { AdvertisementCard, useGetAdvertisementsQuery } from '@/entities/advertisments';
+import type { Advertisement } from '@/entities/advertisements';
+import { useGetAdvertisementsQuery } from '@/entities/advertisements/api';
+import { AdvertisementCards, AdvertisementSearchBar } from '@/entities/advertisements/ui';
 
-import style from './index.module.scss';
+import { SkeletonCards } from '@/shared/ui';
 
 export const AdvertisementsPageComponent = () => {
     const activePage = useActivePage();
+
     const { data, isLoading } = useGetAdvertisementsQuery({ limit: 10 });
+
+    const [searchString, setSearchString] = useState<string>('');
 
     const breadcrumbs: Breadcrumb[] = [{ title: 'Главная', path: '/' }, ...(activePage ? activePage.breadcrumbs : [])];
 
+    const filteredAdvertisements = useMemo<Advertisement[]>(() => {
+        if (!isLoading && data) {
+            return data.filter((item) => item.name.toLowerCase().trim().includes(searchString));
+        }
+
+        return [];
+    }, [isLoading, data, searchString]);
+
     return (
         <PageContainer title="Все объявления" breadcrumbs={breadcrumbs}>
-            <div className={style.content}>
-                {!isLoading &&
-                    data &&
-                    data.map((item) => (
-                        <AdvertisementCard
-                            key={item.id}
-                            id={item.id}
-                            name={item.name}
-                            description={item.description}
-                            imageUrl={item.imageUrl}
-                            createdAt={item.createdAt}
-                            price={item.price}
-                            likes={item.likes}
-                            views={item.views}
-                        />
-                    ))}
-            </div>
+            <AdvertisementSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
+            {isLoading ? <SkeletonCards /> : <AdvertisementCards filteredAdvertisements={filteredAdvertisements} />}
         </PageContainer>
     );
 };

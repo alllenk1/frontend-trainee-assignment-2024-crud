@@ -1,4 +1,4 @@
-import type { Advertisement, GetAdvertisementArgs } from '@/entities/advertisments/types';
+import type { Advertisement, GetAdvertisementArgs } from '@/entities/advertisements/types';
 
 import { baseApi } from '@/shared/api';
 
