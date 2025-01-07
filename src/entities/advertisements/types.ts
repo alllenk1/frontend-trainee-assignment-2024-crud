@@ -12,3 +12,5 @@ export type Advertisement = {
 export type GetAdvertisementArgs = {
     limit?: number;
 };
+
+export type SortItemValue = 'price_increase' | 'price_decrease' | 'likes' | 'views' | '';
