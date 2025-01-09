@@ -1,11 +1,11 @@
-import { SortItemValue } from '../types';
+import { AdvertisementSortValue } from '../types';
 
-type SortItem = {
-    value: SortItemValue;
+type AdvertisementSortItem = {
+    value: AdvertisementSortValue;
     text: string;
 };
 
-export const sortItems: SortItem[] = [
+export const sortItems: AdvertisementSortItem[] = [
     { value: 'price_increase', text: 'возрастанию цены' },
     { value: 'price_decrease', text: 'убыванию цены' },
     { value: 'likes', text: 'лайкам' },

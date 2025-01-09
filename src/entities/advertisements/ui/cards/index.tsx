@@ -7,14 +7,14 @@ import { AdvertisementsCard } from './card';
 import style from './index.module.scss';
 
 type AdvertisementCardsProps = {
-    filteredAdvertisements: Advertisement[];
+    advertisements: Advertisement[];
 };
 
-export const AdvertisementsCards = ({ filteredAdvertisements }: AdvertisementCardsProps) => {
+export const AdvertisementsCards = ({ advertisements }: AdvertisementCardsProps) => {
     return (
         <Box className={style.content}>
-            {filteredAdvertisements.length > 0 ? (
-                filteredAdvertisements.map((item) => (
+            {advertisements.length > 0 ? (
+                advertisements.map((item) => (
                     <AdvertisementsCard
                         key={item.id}
                         id={item.id}

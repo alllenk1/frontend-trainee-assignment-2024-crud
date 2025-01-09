@@ -1,55 +1,61 @@
 'use client';
 
 import * as React from 'react';
+import { Pagination } from '@mui/material';
 import { PageContainer, useActivePage } from '@toolpad/core';
 import type { Breadcrumb } from '@toolpad/core';
-import { useMemo, useState } from 'react';
+import { type ChangeEvent, useMemo, useState } from 'react';
 
-import type { Advertisement, SortItemValue } from '@/entities/advertisements';
+import type { Advertisement, AdvertisementSortValue } from '@/entities/advertisements';
 import { useGetAdvertisementsQuery } from '@/entities/advertisements/api';
+import { filterAdvertisements, paginateAdvertisements } from '@/entities/advertisements/lib/helpers';
 import { AdvertisementsCards, AdvertisementsForm, AdvertisementsSearchBar } from '@/entities/advertisements/ui';
 
 import { SkeletonCards } from '@/shared/ui';
 
+import style from './index.module.scss';
+
 export const AdvertisementsPageComponent = () => {
     const activePage = useActivePage();
 
-    const [limit, setLimit] = useState<number | undefined>(undefined);
-    const [sortValue, setSortValue] = useState<SortItemValue>('');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [limit, setLimit] = useState<number>(10);
+    const [sortValue, setSortValue] = useState<AdvertisementSortValue>('');
     const [searchString, setSearchString] = useState<string>('');
 
-    const { data, isLoading } = useGetAdvertisementsQuery({ limit: limit || 10 });
+    const { data, isLoading } = useGetAdvertisementsQuery();
 
     const breadcrumbs: Breadcrumb[] = [{ title: 'Главная', path: '/' }, ...(activePage ? activePage.breadcrumbs : [])];
 
-    const filteredAdvertisements = useMemo<Advertisement[]>(() => {
-        if (!isLoading && data) {
-            let dataCopy: Advertisement[] = [...data];
+    const filteredAdvertisements = useMemo<Advertisement[]>(
+        () => filterAdvertisements(data, isLoading, searchString, sortValue),
+        [data, isLoading, searchString, sortValue]
+    );
 
-            if (searchString) dataCopy = dataCopy.filter((item) => item.name.toLowerCase().includes(searchString.toLowerCase()));
-            if (sortValue) {
-                if (sortValue === 'price_decrease' || sortValue === 'price_increase') {
-                    dataCopy.sort((item1, item2) =>
-                        sortValue === 'price_decrease' ? item2.price - item1.price : item1.price - item2.price
-                    );
-                } else {
-                    dataCopy.sort((item1, item2) => item2[sortValue] - item1[sortValue]);
-                }
-            }
+    const paginatedAdvertisements = useMemo<Advertisement[]>(
+        () => paginateAdvertisements(filteredAdvertisements, currentPage, limit),
+        [filteredAdvertisements, currentPage, limit]
+    );
 
-            return dataCopy;
-        }
-
-        return [];
-    }, [data, isLoading, searchString, sortValue]);
+    const pagesCount = Math.ceil(filteredAdvertisements.length / limit);
 
     return (
         <PageContainer title="Все объявления" breadcrumbs={breadcrumbs}>
-            <AdvertisementsSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
-            {!isLoading && (
-                <AdvertisementsForm limit={limit} sortValue={sortValue} onChangeLimit={setLimit} onChangeSortValue={setSortValue} />
+            {isLoading ? (
+                <SkeletonCards />
+            ) : (
+                <>
+                    <AdvertisementsSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
+                    <AdvertisementsForm sortValue={sortValue} onChangeLimit={setLimit} onChangeSortValue={setSortValue} />
+                    <AdvertisementsCards advertisements={paginatedAdvertisements} />
+                    <Pagination
+                        className={style.pagination}
+                        page={currentPage}
+                        count={pagesCount}
+                        onChange={(event: ChangeEvent<unknown>, page: number) => setCurrentPage(page)}
+                    />
+                </>
             )}
-            {isLoading ? <SkeletonCards /> : <AdvertisementsCards filteredAdvertisements={filteredAdvertisements} />}
         </PageContainer>
     );
 };

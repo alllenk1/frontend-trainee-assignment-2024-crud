@@ -1,11 +1,11 @@
-import type { Advertisement, GetAdvertisementArgs } from '@/entities/advertisements/types';
+import type { Advertisement } from '@/entities/advertisements/types';
 
 import { baseApi } from '@/shared/api';
 
 const advertisementsApi = baseApi.injectEndpoints?.({
     endpoints: (builder) => ({
-        getAdvertisements: builder.query<Advertisement[], GetAdvertisementArgs>({
-            query: ({ limit }) => `/advertisements?_start=0&_limit=${limit}`,
+        getAdvertisements: builder.query<Advertisement[], void>({
+            query: () => `/advertisements`,
             providesTags: ['Advertisements'],
         }),
     }),

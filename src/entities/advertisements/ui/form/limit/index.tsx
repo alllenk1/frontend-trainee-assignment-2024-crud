@@ -3,12 +3,11 @@ import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
 
 type AdvertisementsLimitInputProps = {
-    limit: number | undefined;
     onChangeLimit: (value: number) => void;
 };
 
-export const AdvertisementsLimitInput = ({ limit, onChangeLimit }: AdvertisementsLimitInputProps) => {
-    const [value, setValue] = useState<string>(limit ? String(limit) : '');
+export const AdvertisementsLimitInput = ({ onChangeLimit }: AdvertisementsLimitInputProps) => {
+    const [value, setValue] = useState<string>('');
     const [error, setError] = useState<string>('');
 
     const handleChangeSearchQuery = (event: ChangeEvent<HTMLInputElement>) => {

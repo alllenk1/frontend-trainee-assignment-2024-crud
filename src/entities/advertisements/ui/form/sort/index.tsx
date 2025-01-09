@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, type SelectChangeEvent } from '@mui/material';
 
-import type { SortItemValue } from '@/entities/advertisements';
+import type { AdvertisementSortValue } from '@/entities/advertisements';
 import { sortItems } from '@/entities/advertisements/lib';
 
 type AdvertisementsSortSelectProps = {
-    sortValue: SortItemValue;
-    onChangeSortValue: (value: SortItemValue) => void;
+    sortValue: AdvertisementSortValue;
+    onChangeSortValue: (value: AdvertisementSortValue) => void;
 };
 
 export const AdvertisementsSortSelect = ({ sortValue, onChangeSortValue }: AdvertisementsSortSelectProps) => {
     const handleChange = (event: SelectChangeEvent) => {
-        onChangeSortValue(event.target.value as SortItemValue);
+        onChangeSortValue(event.target.value as AdvertisementSortValue);
     };
 
     return (
