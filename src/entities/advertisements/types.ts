@@ -9,4 +9,5 @@ export type Advertisement = {
     imageUrl?: string;
 };
 
+export type CreateAdvertisementArgs = Omit<Advertisement, 'id'>;
 export type AdvertisementSortValue = 'price_increase' | 'price_decrease' | 'likes' | 'views' | '';

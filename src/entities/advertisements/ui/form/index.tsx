@@ -1,4 +1,6 @@
-import { FormControl, TextField } from '@mui/material';
+import { FormControl } from '@mui/material';
+
+import { AdvertisementsCreateButton } from '@/entities/advertisements/ui/form/create';
 
 import type { AdvertisementSortValue } from '../../types';
 import style from './index.module.scss';
@@ -9,14 +11,15 @@ type AdvertisementsFormProps = {
     sortValue: AdvertisementSortValue;
     onChangeLimit: (value: number) => void;
     onChangeSortValue: (value: AdvertisementSortValue) => void;
+    onChangeCreateModal: (value: boolean) => void;
 };
 
-export const AdvertisementsForm = ({ onChangeLimit, sortValue, onChangeSortValue }: AdvertisementsFormProps) => {
+export const AdvertisementsForm = ({ onChangeLimit, sortValue, onChangeSortValue, onChangeCreateModal }: AdvertisementsFormProps) => {
     return (
         <FormControl variant="standard" className={style.form}>
             <AdvertisementsLimitInput onChangeLimit={onChangeLimit} />
             <AdvertisementsSortSelect sortValue={sortValue} onChangeSortValue={onChangeSortValue} />
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+            <AdvertisementsCreateButton onChangeCreateModal={onChangeCreateModal} />
         </FormControl>
     );
 };

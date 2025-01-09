@@ -6,6 +6,8 @@ import { PageContainer, useActivePage } from '@toolpad/core';
 import type { Breadcrumb } from '@toolpad/core';
 import { type ChangeEvent, useMemo, useState } from 'react';
 
+import { AdvertisementCreateModal } from '@/widgets/modals';
+
 import type { Advertisement, AdvertisementSortValue } from '@/entities/advertisements';
 import { useGetAdvertisementsQuery } from '@/entities/advertisements/api';
 import { filterAdvertisements, paginateAdvertisements } from '@/entities/advertisements/lib/helpers';
@@ -18,6 +20,7 @@ import style from './index.module.scss';
 export const AdvertisementsPageComponent = () => {
     const activePage = useActivePage();
 
+    const [isOpenCreateModal, setOpenCreateModal] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [limit, setLimit] = useState<number>(10);
     const [sortValue, setSortValue] = useState<AdvertisementSortValue>('');
@@ -46,7 +49,12 @@ export const AdvertisementsPageComponent = () => {
             ) : (
                 <>
                     <AdvertisementsSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
-                    <AdvertisementsForm sortValue={sortValue} onChangeLimit={setLimit} onChangeSortValue={setSortValue} />
+                    <AdvertisementsForm
+                        sortValue={sortValue}
+                        onChangeLimit={setLimit}
+                        onChangeSortValue={setSortValue}
+                        onChangeCreateModal={setOpenCreateModal}
+                    />
                     <AdvertisementsCards advertisements={paginatedAdvertisements} />
                     <Pagination
                         className={style.pagination}
@@ -54,6 +62,7 @@ export const AdvertisementsPageComponent = () => {
                         count={pagesCount}
                         onChange={(event: ChangeEvent<unknown>, page: number) => setCurrentPage(page)}
                     />
+                    <AdvertisementCreateModal isOpen={isOpenCreateModal} onClose={setOpenCreateModal} />
                 </>
             )}
         </PageContainer>
