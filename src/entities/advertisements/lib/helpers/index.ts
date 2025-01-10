@@ -16,6 +16,8 @@ export const filterAdvertisements = (
             } else {
                 dataCopy.sort((item1, item2) => item2[sortValue] - item1[sortValue]);
             }
+        } else {
+            dataCopy.sort((item1, item2) => +new Date(item2.createdAt) - +new Date(item1.createdAt));
         }
 
         return dataCopy;
