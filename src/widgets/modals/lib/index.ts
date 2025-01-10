@@ -22,4 +22,6 @@ export const modalStyle = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
+    maxHeight: '90%',
+    overflowY: 'auto',
 };

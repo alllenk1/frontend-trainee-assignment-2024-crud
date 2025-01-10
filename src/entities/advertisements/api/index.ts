@@ -8,11 +8,14 @@ const advertisementsApi = baseApi.injectEndpoints?.({
             query: () => `advertisements`,
             providesTags: ['Advertisements'],
         }),
+        getAdvertisement: builder.query<Advertisement, string>({
+            query: (id) => `advertisements/${id}`,
+            providesTags: ['Advertisement'],
+        }),
         createAdvertisement: builder.mutation<void, CreateAdvertisementArgs>({
             query: (body) => ({ url: 'advertisements', method: 'POST', body }),
-            invalidatesTags: (_result, error) => (!error ? ['Advertisements'] : []),
         }),
     }),
 });
 
-export const { useGetAdvertisementsQuery, useCreateAdvertisementMutation } = advertisementsApi;
+export const { useGetAdvertisementsQuery, useGetAdvertisementQuery, useCreateAdvertisementMutation } = advertisementsApi;

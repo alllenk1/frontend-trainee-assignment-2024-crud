@@ -1,0 +1,49 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 550px;
+
+    padding: 36px;
+
+    @media (max-width: 600px) {
+        width: 90%;
+
+        padding: 24px;
+    }
+}
+
+.card,
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.image {
+    height: auto;
+    width: 100%;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    width: fit-content;
+}
+
+.input {
+    width: 100%;
+}
+
+.button {
+    width: 100%;
+    height: 56px;
+}

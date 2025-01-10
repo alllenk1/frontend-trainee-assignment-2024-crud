@@ -26,13 +26,13 @@ export const AdvertisementsPageComponent = () => {
     const [sortValue, setSortValue] = useState<AdvertisementSortValue>('');
     const [searchString, setSearchString] = useState<string>('');
 
-    const { data, isLoading } = useGetAdvertisementsQuery();
+    const { data: advertisementsData, isLoading: isLoadingAdvertisements } = useGetAdvertisementsQuery();
 
     const breadcrumbs: Breadcrumb[] = [{ title: 'Главная', path: '/' }, ...(activePage ? activePage.breadcrumbs : [])];
 
     const filteredAdvertisements = useMemo<Advertisement[]>(
-        () => filterAdvertisements(data, isLoading, searchString, sortValue),
-        [data, isLoading, searchString, sortValue]
+        () => filterAdvertisements(advertisementsData, isLoadingAdvertisements, searchString, sortValue),
+        [advertisementsData, isLoadingAdvertisements, searchString, sortValue]
     );
 
     const paginatedAdvertisements = useMemo<Advertisement[]>(
@@ -44,7 +44,7 @@ export const AdvertisementsPageComponent = () => {
 
     return (
         <PageContainer title="Все объявления" breadcrumbs={breadcrumbs}>
-            {isLoading ? (
+            {isLoadingAdvertisements ? (
                 <SkeletonCards />
             ) : (
                 <>
