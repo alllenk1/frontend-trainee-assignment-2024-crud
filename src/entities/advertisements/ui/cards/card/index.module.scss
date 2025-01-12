@@ -17,12 +17,12 @@
 .icons {
     display: flex;
     gap: 20px;
-}
 
-.icon {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    .icon {
+        display: flex;
+        align-items: center;
+        gap: 5px;
 
-    width: fit-content;
+        width: fit-content;
+    }
 }

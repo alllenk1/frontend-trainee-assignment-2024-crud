@@ -1,0 +1,53 @@
+'use client';
+
+import * as React from 'react';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Box, Button, Typography } from '@mui/material';
+import { PageContainer } from '@toolpad/core';
+import { useParams } from 'next/navigation';
+
+import { useGetAdvertisementQuery } from '@/entities/advertisements';
+
+import style from './index.module.scss';
+
+export const AdvertisementPageComponent = () => {
+    const params = useParams<{ id: string }>();
+
+    const { data, isLoading } = useGetAdvertisementQuery(params ? params.id : '');
+
+    return (
+        !isLoading &&
+        data && (
+            <PageContainer className={style.container} title={data.name}>
+                <Box className={style.buttons}>
+                    <Button className={style.button} variant="outlined" color="error">
+                        Удалить
+                    </Button>
+                    <Button className={style.button} variant="contained">
+                        Изменить
+                    </Button>
+                </Box>
+                <img className={style.image} src={data.imageUrl || '/img/placeholder-img.png'} alt={data.name} />
+                <Box className={style.details}>
+                    <Box className={style.icons}>
+                        <Typography className={style.icon} variant="body2" sx={{ color: 'text.secondary' }}>
+                            <FavoriteIcon /> {data.likes}
+                        </Typography>
+                        <Typography className={style.icon} variant="body2" sx={{ color: 'text.secondary' }}>
+                            <VisibilityIcon /> {data.views}
+                        </Typography>
+                    </Box>
+                    <Typography variant="h5" sx={{ color: 'text.secondary' }}>
+                        {`${data.price} руб.`}
+                    </Typography>
+                </Box>
+                {data.description && (
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        {data.description}
+                    </Typography>
+                )}
+            </PageContainer>
+        )
+    );
+};

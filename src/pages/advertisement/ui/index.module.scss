@@ -1,0 +1,45 @@
+.container {
+    position: relative;
+}
+
+.buttons {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+    display: flex;
+    gap: 10px;
+
+    .button {
+        width: 200px;
+    }
+}
+
+.image {
+    max-height: 345px;
+    max-width: 345px;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+
+    .icon {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        width: fit-content;
+    }
+}
