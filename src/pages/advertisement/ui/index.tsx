@@ -6,6 +6,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, Button, Typography } from '@mui/material';
 import { PageContainer } from '@toolpad/core';
 import { useParams } from 'next/navigation';
+import { useState } from 'react';
+
+import { AdvertisementUpdateModal } from '@/widgets/modals';
 
 import { useGetAdvertisementQuery } from '@/entities/advertisements';
 
@@ -13,6 +16,8 @@ import style from './index.module.scss';
 
 export const AdvertisementPageComponent = () => {
     const params = useParams<{ id: string }>();
+
+    const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
 
     const { data, isLoading } = useGetAdvertisementQuery(params ? params.id : '');
 
@@ -24,7 +29,7 @@ export const AdvertisementPageComponent = () => {
                     <Button className={style.button} variant="outlined" color="error">
                         Удалить
                     </Button>
-                    <Button className={style.button} variant="contained">
+                    <Button className={style.button} variant="contained" onClick={() => setOpenUpdateModal(true)}>
                         Изменить
                     </Button>
                 </Box>
@@ -47,6 +52,7 @@ export const AdvertisementPageComponent = () => {
                         {data.description}
                     </Typography>
                 )}
+                <AdvertisementUpdateModal data={data} isOpen={isOpenUpdateModal} onClose={setOpenUpdateModal} />
             </PageContainer>
         )
     );

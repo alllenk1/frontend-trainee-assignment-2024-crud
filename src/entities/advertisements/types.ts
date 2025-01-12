@@ -10,4 +10,5 @@ export type Advertisement = {
 };
 
 export type CreateAdvertisementArgs = Omit<Advertisement, 'id'>;
+export type UpdateAdvertisementArgs = { id: Advertisement['id']; body: Pick<Advertisement, 'name' | 'description' | 'imageUrl' | 'price'> };
 export type AdvertisementSortValue = 'price_increase' | 'price_decrease' | 'likes' | 'views' | '';
