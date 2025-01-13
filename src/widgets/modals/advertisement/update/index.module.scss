@@ -1,33 +1,3 @@
-.container {
-    padding: 65px 0;
-}
-
-.modal {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    width: 550px;
-
-    padding: 36px;
-
-    @media (max-width: 600px) {
-        width: 90%;
-
-        padding: 24px;
-    }
-}
-
-.modalHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.content {
-}
-
-.card,
 .form {
     display: flex;
     flex-direction: column;
@@ -42,14 +12,14 @@
 .icons {
     display: flex;
     gap: 20px;
-}
 
-.icon {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    .icon {
+        display: flex;
+        align-items: center;
+        gap: 5px;
 
-    width: fit-content;
+        width: fit-content;
+    }
 }
 
 .input {

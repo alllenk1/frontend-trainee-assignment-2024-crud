@@ -14,7 +14,7 @@ type AdvertisementsFormProps = {
     onChangeCreateModal: (value: boolean) => void;
 };
 
-export const AdvertisementsForm = ({ onChangeLimit, sortValue, onChangeSortValue, onChangeCreateModal }: AdvertisementsFormProps) => {
+export const AdvertisementsFilterForm = ({ onChangeLimit, sortValue, onChangeSortValue, onChangeCreateModal }: AdvertisementsFormProps) => {
     return (
         <FormControl variant="standard" className={style.form}>
             <AdvertisementsLimitInput onChangeLimit={onChangeLimit} />

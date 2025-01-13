@@ -11,7 +11,7 @@ import { AdvertisementCreateModal } from '@/widgets/modals';
 import type { Advertisement, AdvertisementSortValue } from '@/entities/advertisements';
 import { useGetAdvertisementsQuery } from '@/entities/advertisements/api';
 import { filterAdvertisements, paginateAdvertisements } from '@/entities/advertisements/lib/helpers';
-import { AdvertisementsCards, AdvertisementsForm, AdvertisementsSearchBar } from '@/entities/advertisements/ui';
+import { AdvertisementsCards, AdvertisementsFilterForm, AdvertisementsSearchBar } from '@/entities/advertisements/ui';
 
 import { SkeletonCards } from '@/shared/ui';
 
@@ -49,7 +49,7 @@ export const AdvertisementsPageComponent = () => {
             ) : (
                 <>
                     <AdvertisementsSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
-                    <AdvertisementsForm
+                    <AdvertisementsFilterForm
                         sortValue={sortValue}
                         onChangeLimit={setLimit}
                         onChangeSortValue={setSortValue}

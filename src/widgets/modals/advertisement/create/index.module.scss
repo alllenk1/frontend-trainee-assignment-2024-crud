@@ -1,27 +1,3 @@
-.modal {
-    width: 550px;
-
-    padding: 36px;
-
-    @media (max-width: 600px) {
-        width: 90%;
-
-        padding: 24px;
-    }
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    margin-top: 30px;
-}
-
-.input {
-    width: 100%;
-}
-
 .button {
     width: 100%;
     height: 56px;
