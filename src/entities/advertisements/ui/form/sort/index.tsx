@@ -17,7 +17,7 @@ export const AdvertisementsSortSelect = ({ sortValue, onChangeSortValue }: Adver
     return (
         <FormControl fullWidth>
             <InputLabel id="sort-label">Сортировать по</InputLabel>
-            <Select labelId="sort-label" id="sort-select" label="Сортировать по" value={sortValue} onChange={handleChange}>
+            <Select label="Сортировать по" value={sortValue} onChange={handleChange}>
                 {sortItems.map((item) => (
                     <MenuItem key={item.value} value={item.value}>
                         {item.text}

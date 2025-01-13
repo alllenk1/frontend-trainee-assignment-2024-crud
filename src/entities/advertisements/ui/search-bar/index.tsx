@@ -1,6 +1,7 @@
 import * as React from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
-import { FormControl, Input, InputAdornment } from '@mui/material';
+import { FormControl, IconButton, Input, InputAdornment } from '@mui/material';
 import { type ChangeEvent } from 'react';
 
 type AdvertisementSearchBarProps = {
@@ -19,9 +20,17 @@ export const AdvertisementsSearchBar = ({ searchString, onChangeSearchString }: 
                 id="search"
                 placeholder="Искать объявления"
                 endAdornment={
-                    <InputAdornment position="end">
-                        <SearchIcon />
-                    </InputAdornment>
+                    !searchString ? (
+                        <InputAdornment position="end">
+                            <SearchIcon />
+                        </InputAdornment>
+                    ) : (
+                        <InputAdornment position="end">
+                            <IconButton sx={{ padding: '0' }} onClick={() => onChangeSearchString('')}>
+                                <CloseIcon />
+                            </IconButton>
+                        </InputAdornment>
+                    )
                 }
                 value={searchString}
                 onChange={handleChangeSearchQuery}

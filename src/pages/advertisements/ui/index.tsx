@@ -11,6 +11,7 @@ import { AdvertisementCreateModal } from '@/widgets/modals';
 import type { Advertisement, AdvertisementSortValue } from '@/entities/advertisements';
 import { useGetAdvertisementsQuery } from '@/entities/advertisements/api';
 import { filterAdvertisements, paginateAdvertisements } from '@/entities/advertisements/lib/helpers';
+import { AdvertisementLimitValue } from '@/entities/advertisements/types';
 import { AdvertisementsCards, AdvertisementsFilterForm, AdvertisementsSearchBar } from '@/entities/advertisements/ui';
 
 import { SkeletonCards } from '@/shared/ui';
@@ -22,7 +23,7 @@ export const AdvertisementsPageComponent = () => {
 
     const [isOpenCreateModal, setOpenCreateModal] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [limit, setLimit] = useState<number>(10);
+    const [limit, setLimit] = useState<AdvertisementLimitValue>('10');
     const [sortValue, setSortValue] = useState<AdvertisementSortValue>('');
     const [searchString, setSearchString] = useState<string>('');
 
@@ -36,11 +37,11 @@ export const AdvertisementsPageComponent = () => {
     );
 
     const paginatedAdvertisements = useMemo<Advertisement[]>(
-        () => paginateAdvertisements(filteredAdvertisements, currentPage, limit),
+        () => paginateAdvertisements(filteredAdvertisements, currentPage, +limit),
         [filteredAdvertisements, currentPage, limit]
     );
 
-    const pagesCount = Math.ceil(filteredAdvertisements.length / limit);
+    const pagesCount = Math.ceil(filteredAdvertisements.length / +limit);
 
     return (
         <PageContainer title="Все объявления" breadcrumbs={breadcrumbs}>
@@ -56,12 +57,14 @@ export const AdvertisementsPageComponent = () => {
                         onChangeCreateModal={setOpenCreateModal}
                     />
                     <AdvertisementsCards advertisements={paginatedAdvertisements} />
-                    <Pagination
-                        className={style.pagination}
-                        page={currentPage}
-                        count={pagesCount}
-                        onChange={(event: ChangeEvent<unknown>, page: number) => setCurrentPage(page)}
-                    />
+                    {filteredAdvertisements.length > +limit && (
+                        <Pagination
+                            className={style.pagination}
+                            page={currentPage}
+                            count={pagesCount}
+                            onChange={(event: ChangeEvent<unknown>, page: number) => setCurrentPage(page)}
+                        />
+                    )}
                     <AdvertisementCreateModal isOpen={isOpenCreateModal} onClose={setOpenCreateModal} />
                 </>
             )}

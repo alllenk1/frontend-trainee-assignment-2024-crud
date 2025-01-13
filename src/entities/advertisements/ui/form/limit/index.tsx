@@ -1,47 +1,32 @@
-import { TextField } from '@mui/material';
-import type { ChangeEvent } from 'react';
-import { useEffect, useState } from 'react';
+import * as React from 'react';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { useState } from 'react';
+
+import { limitItems } from '@/entities/advertisements';
+import { AdvertisementLimitValue } from '@/entities/advertisements/types';
 
 type AdvertisementsLimitInputProps = {
-    onChangeLimit: (value: number) => void;
+    onChangeLimit: (value: AdvertisementLimitValue) => void;
 };
 
-export const AdvertisementsLimitInput = ({ onChangeLimit }: AdvertisementsLimitInputProps) => {
+export const AdvertisementsLimitSelect = ({ onChangeLimit }: AdvertisementsLimitInputProps) => {
     const [value, setValue] = useState<string>('');
-    const [error, setError] = useState<string>('');
 
-    const handleChangeSearchQuery = (event: ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value;
-
-        setValue(newValue);
+    const handleChange = (event: SelectChangeEvent) => {
+        setValue(event.target.value);
+        onChangeLimit(event.target.value as AdvertisementLimitValue);
     };
 
-    useEffect(() => {
-        if (value) {
-            const numValue = Number(value);
-
-            if (isNaN(numValue)) {
-                setError('Введите число');
-            } else if (numValue < 1) {
-                setError('Число должно быть больше нуля');
-            } else {
-                setError('');
-                onChangeLimit(numValue);
-            }
-        } else {
-            setError('');
-        }
-    }, [value, onChangeLimit]);
-
     return (
-        <TextField
-            id="limit"
-            variant="outlined"
-            placeholder="Объявлений на странице"
-            error={!!error}
-            helperText={error}
-            value={value}
-            onChange={handleChangeSearchQuery}
-        />
+        <FormControl fullWidth>
+            <InputLabel id="sort-label">Объявлений на странице</InputLabel>
+            <Select label="Объявлений на странице" value={value} onChange={handleChange}>
+                {limitItems.map((item) => (
+                    <MenuItem key={item.value} value={item.value}>
+                        {item.value}
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
     );
 };

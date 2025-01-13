@@ -53,6 +53,14 @@ export const AdvertisementPageComponent = () => {
                         {data.description}
                     </Typography>
                 )}
+                <Box className={style.buttons_mobile}>
+                    <Button className={style.button} variant="outlined" color="error" onClick={() => setOpenDeleteModal(true)}>
+                        Удалить
+                    </Button>
+                    <Button className={style.button} variant="contained" onClick={() => setOpenUpdateModal(true)}>
+                        Изменить
+                    </Button>
+                </Box>
                 <AdvertisementUpdateModal data={data} isOpen={isOpenUpdateModal} onClose={setOpenUpdateModal} />
                 <AdvertisementDeleteModal isOpen={isOpenDeleteModal} onClose={setOpenDeleteModal} />
             </PageContainer>

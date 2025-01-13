@@ -2,14 +2,14 @@ import { FormControl } from '@mui/material';
 
 import { AdvertisementsCreateButton } from '@/entities/advertisements/ui/form/create';
 
-import type { AdvertisementSortValue } from '../../types';
+import type { AdvertisementLimitValue, AdvertisementSortValue } from '../../types';
 import style from './index.module.scss';
-import { AdvertisementsLimitInput } from './limit';
+import { AdvertisementsLimitSelect } from './limit';
 import { AdvertisementsSortSelect } from './sort';
 
 type AdvertisementsFormProps = {
     sortValue: AdvertisementSortValue;
-    onChangeLimit: (value: number) => void;
+    onChangeLimit: (value: AdvertisementLimitValue) => void;
     onChangeSortValue: (value: AdvertisementSortValue) => void;
     onChangeCreateModal: (value: boolean) => void;
 };
@@ -17,7 +17,7 @@ type AdvertisementsFormProps = {
 export const AdvertisementsFilterForm = ({ onChangeLimit, sortValue, onChangeSortValue, onChangeCreateModal }: AdvertisementsFormProps) => {
     return (
         <FormControl variant="standard" className={style.form}>
-            <AdvertisementsLimitInput onChangeLimit={onChangeLimit} />
+            <AdvertisementsLimitSelect onChangeLimit={onChangeLimit} />
             <AdvertisementsSortSelect sortValue={sortValue} onChangeSortValue={onChangeSortValue} />
             <AdvertisementsCreateButton onChangeCreateModal={onChangeCreateModal} />
         </FormControl>
