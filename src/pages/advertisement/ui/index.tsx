@@ -8,7 +8,7 @@ import { PageContainer } from '@toolpad/core';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { AdvertisementUpdateModal } from '@/widgets/modals';
+import { AdvertisementDeleteModal, AdvertisementUpdateModal } from '@/widgets/modals';
 
 import { useGetAdvertisementQuery } from '@/entities/advertisements';
 
@@ -18,6 +18,7 @@ export const AdvertisementPageComponent = () => {
     const params = useParams<{ id: string }>();
 
     const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
+    const [isOpenDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
 
     const { data, isLoading } = useGetAdvertisementQuery(params ? params.id : '');
 
@@ -26,7 +27,7 @@ export const AdvertisementPageComponent = () => {
         data && (
             <PageContainer className={style.container} title={data.name}>
                 <Box className={style.buttons}>
-                    <Button className={style.button} variant="outlined" color="error">
+                    <Button className={style.button} variant="outlined" color="error" onClick={() => setOpenDeleteModal(true)}>
                         Удалить
                     </Button>
                     <Button className={style.button} variant="contained" onClick={() => setOpenUpdateModal(true)}>
@@ -53,6 +54,7 @@ export const AdvertisementPageComponent = () => {
                     </Typography>
                 )}
                 <AdvertisementUpdateModal data={data} isOpen={isOpenUpdateModal} onClose={setOpenUpdateModal} />
+                <AdvertisementDeleteModal isOpen={isOpenDeleteModal} onClose={setOpenDeleteModal} />
             </PageContainer>
         )
     );

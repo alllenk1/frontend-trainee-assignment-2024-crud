@@ -21,8 +21,17 @@ const advertisementsApi = baseApi.injectEndpoints?.({
             query: ({ id, body }) => ({ url: `advertisements/${id}`, method: 'PATCH', body }),
             invalidatesTags: (_result, error) => (!error ? ['Advertisements', 'Advertisement'] : []),
         }),
+        deleteAdvertisement: builder.mutation<void, string>({
+            query: (id) => ({ url: `advertisements/${id}`, method: 'DELETE' }),
+            invalidatesTags: (_result, error) => (!error ? ['Advertisements'] : []),
+        }),
     }),
 });
 
-export const { useGetAdvertisementsQuery, useGetAdvertisementQuery, useCreateAdvertisementMutation, useUpdateAdvertisementMutation } =
-    advertisementsApi;
+export const {
+    useGetAdvertisementsQuery,
+    useGetAdvertisementQuery,
+    useCreateAdvertisementMutation,
+    useUpdateAdvertisementMutation,
+    useDeleteAdvertisementMutation,
+} = advertisementsApi;

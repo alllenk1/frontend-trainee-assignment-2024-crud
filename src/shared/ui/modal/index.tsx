@@ -6,7 +6,7 @@ import style from './index.module.scss';
 import { modalStyle } from './lib';
 
 type ModalComponentProps = {
-    title: string;
+    title?: string;
     isOpen: boolean;
     onClose: (value: boolean) => void;
     children: ReactNode;
