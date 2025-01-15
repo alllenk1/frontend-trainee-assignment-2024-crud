@@ -23,8 +23,8 @@ export const AdvertisementsPageComponent = () => {
 
     const [isOpenCreateModal, setOpenCreateModal] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [limit, setLimit] = useState<AdvertisementLimitValue>('10');
-    const [sortValue, setSortValue] = useState<AdvertisementSortValue>('');
+    const [limit, setLimit] = useState<AdvertisementLimitValue | ''>('10');
+    const [sortValue, setSortValue] = useState<AdvertisementSortValue | ''>('');
     const [searchString, setSearchString] = useState<string>('');
 
     const { data: advertisementsData, isLoading: isLoadingAdvertisements } = useGetAdvertisementsQuery();
@@ -51,6 +51,7 @@ export const AdvertisementsPageComponent = () => {
                 <>
                     <AdvertisementsSearchBar searchString={searchString} onChangeSearchString={setSearchString} />
                     <AdvertisementsFilterForm
+                        limitValue={limit}
                         sortValue={sortValue}
                         onChangeLimit={setLimit}
                         onChangeSortValue={setSortValue}

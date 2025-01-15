@@ -1,19 +1,10 @@
 import { AdvertisementLimitValue, AdvertisementSortValue } from '../types';
 
-type AdvertisementSortItem = {
-    value: AdvertisementSortValue;
-    text: string;
+export const sortItems: Record<AdvertisementSortValue, string> = {
+    priceIncrease: 'возрастанию цены',
+    priceDecrease: 'убыванию цены',
+    likes: 'лайкам',
+    views: 'просмотрам',
 };
 
-type AdvertisementLimitItem = {
-    value: AdvertisementLimitValue;
-};
-
-export const sortItems: AdvertisementSortItem[] = [
-    { value: 'price_increase', text: 'возрастанию цены' },
-    { value: 'price_decrease', text: 'убыванию цены' },
-    { value: 'likes', text: 'лайкам' },
-    { value: 'views', text: 'просмотрам' },
-];
-
-export const limitItems: AdvertisementLimitItem[] = [{ value: '5' }, { value: '10' }, { value: '20' }, { value: '50' }];
+export const limitItems: AdvertisementLimitValue[] = ['5', '10', '20', '50'];
