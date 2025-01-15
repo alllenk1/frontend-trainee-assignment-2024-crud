@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { Pagination } from '@mui/material';
-import { PageContainer, useActivePage } from '@toolpad/core';
-import type { Breadcrumb } from '@toolpad/core';
+import { PageContainer } from '@toolpad/core';
 import { type ChangeEvent, useMemo, useState } from 'react';
 
 import { AdvertisementCreateModal } from '@/widgets/modals';
@@ -19,8 +18,6 @@ import { SkeletonCards } from '@/shared/ui';
 import style from './index.module.scss';
 
 export const AdvertisementsPageComponent = () => {
-    const activePage = useActivePage();
-
     const [isOpenCreateModal, setOpenCreateModal] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [limit, setLimit] = useState<AdvertisementLimitValue | ''>('10');
@@ -28,8 +25,6 @@ export const AdvertisementsPageComponent = () => {
     const [searchString, setSearchString] = useState<string>('');
 
     const { data: advertisementsData, isLoading: isLoadingAdvertisements } = useGetAdvertisementsQuery();
-
-    const breadcrumbs: Breadcrumb[] = [{ title: 'Главная', path: '/' }, ...(activePage ? activePage.breadcrumbs : [])];
 
     const filteredAdvertisements = useMemo<Advertisement[]>(
         () => filterAdvertisements(advertisementsData, isLoadingAdvertisements, searchString, sortValue),
@@ -44,7 +39,7 @@ export const AdvertisementsPageComponent = () => {
     const pagesCount = Math.ceil(filteredAdvertisements.length / +limit);
 
     return (
-        <PageContainer title="Все объявления" breadcrumbs={breadcrumbs}>
+        <PageContainer title="Все объявления" breadcrumbs={[]}>
             {isLoadingAdvertisements ? (
                 <SkeletonCards />
             ) : (

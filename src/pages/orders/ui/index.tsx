@@ -1,8 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { PageContainer, useActivePage } from '@toolpad/core';
-import type { Breadcrumb } from '@toolpad/core';
+import { PageContainer } from '@toolpad/core';
 import { useMemo, useState } from 'react';
 
 import { type Order, OrdersCards } from '@/entities/orders';
@@ -14,9 +13,6 @@ import { OrdersFilterForm } from '@/entities/orders/ui/filter-form';
 import { SkeletonCards } from '@/shared/ui';
 
 export const OrdersPageComponent = () => {
-    const activePage = useActivePage();
-    const breadcrumbs: Breadcrumb[] = [{ title: 'Главная', path: '/' }, ...(activePage ? activePage.breadcrumbs : [])];
-
     const [statusValue, setStatusValue] = useState<Order['status'] | ''>('');
     const [priceValue, setPriceValue] = useState<PriceSortItems | ''>('');
 
@@ -28,7 +24,7 @@ export const OrdersPageComponent = () => {
     );
 
     return (
-        <PageContainer title="Все заказы" breadcrumbs={breadcrumbs}>
+        <PageContainer title="Все заказы" breadcrumbs={[]}>
             {!isLoadingOrders && ordersData ? (
                 <>
                     <OrdersFilterForm

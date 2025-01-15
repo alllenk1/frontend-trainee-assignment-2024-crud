@@ -1,3 +1,5 @@
+import { AdvertisementsPageComponent } from '@/pages';
+
 export default function HomePage() {
-    return <h1>Привет я из интернет</h1>;
+    return <AdvertisementsPageComponent />;
 }
