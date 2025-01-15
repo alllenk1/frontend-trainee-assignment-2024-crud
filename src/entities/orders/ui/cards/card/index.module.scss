@@ -1,0 +1,18 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 450px;
+
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    width: 100%;
+}
