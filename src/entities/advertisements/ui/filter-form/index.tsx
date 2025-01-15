@@ -1,6 +1,6 @@
 import { FormControl } from '@mui/material';
 
-import { AdvertisementsCreateButton } from '@/entities/advertisements/ui/form/create';
+import { AdvertisementsCreateButton } from '@/entities/advertisements/ui/filter-form/create';
 
 import type { AdvertisementLimitValue, AdvertisementSortValue } from '../../types';
 import style from './index.module.scss';

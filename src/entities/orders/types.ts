@@ -23,3 +23,4 @@ export type Order = {
 };
 
 export type DeliveryWays = 'mail' | 'sdek';
+export type PriceSortItems = 'priceIncrease' | 'priceDecrease';

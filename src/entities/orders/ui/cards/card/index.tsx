@@ -16,8 +16,6 @@ import style from './index.module.scss';
 export const OrdersCard = ({ status, createdAt, finishedAt, items, deliveryWay, total }: Order) => {
     const [isOpenItemsModal, setOpenItemsModal] = useState<boolean>(false);
 
-    console.log(deliveryWayItems[deliveryWay]);
-
     const data = useMemo(
         () => [
             {
