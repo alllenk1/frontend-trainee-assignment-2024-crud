@@ -15,7 +15,7 @@ export const deliveryWayItems: Record<DeliveryWays, string> = {
     sdek: 'СДЭК',
 };
 
-export const priceSortItems: Record<PriceSortItems, string> = {
+export const priceSortItems: Record<Exclude<PriceSortItems, ''>, string> = {
     priceIncrease: 'возрастанию цены',
     priceDecrease: 'убыванию цены',
 };

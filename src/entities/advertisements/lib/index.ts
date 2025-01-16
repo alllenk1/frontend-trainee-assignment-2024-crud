@@ -1,6 +1,6 @@
 import { AdvertisementLimitValue, AdvertisementSortValue } from '../types';
 
-export const sortItems: Record<AdvertisementSortValue, string> = {
+export const sortItems: Record<Exclude<AdvertisementSortValue, ''>, string> = {
     priceIncrease: 'возрастанию цены',
     priceDecrease: 'убыванию цены',
     likes: 'лайкам',

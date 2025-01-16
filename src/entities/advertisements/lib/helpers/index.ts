@@ -27,6 +27,8 @@ export const filterAdvertisements = (
 };
 
 export const paginateAdvertisements = (array: Advertisement[], currentPage: number, limit: number) => {
+    if (!limit) limit = 10;
+
     const startIndex = (currentPage - 1) * limit;
 
     return array.slice(startIndex, startIndex + limit);

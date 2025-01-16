@@ -20,7 +20,7 @@ import style from './index.module.scss';
 export const AdvertisementsPageComponent = () => {
     const [isOpenCreateModal, setOpenCreateModal] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [limit, setLimit] = useState<AdvertisementLimitValue | ''>('10');
+    const [limit, setLimit] = useState<AdvertisementLimitValue | ''>('');
     const [sortValue, setSortValue] = useState<AdvertisementSortValue | ''>('');
     const [searchString, setSearchString] = useState<string>('');
 
