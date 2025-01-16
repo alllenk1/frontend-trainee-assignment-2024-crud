@@ -22,7 +22,7 @@ export const AdvertisementDeleteModal = ({ isOpen, onClose }: AdvertisementDelet
 
     const handleDelete = async () => {
         await deleteAdvertisement(params ? String(params.id) : '');
-        permanentRedirect(`/advertisements`);
+        permanentRedirect(`/`);
     };
 
     return (
