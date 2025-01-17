@@ -4,3 +4,9 @@ export const dateFormat = (date: string) => {
 
     return parsedDate.toLocaleDateString('ru-RU', options);
 };
+
+export const paginateArray = <T>(array: T[], currentPage: number, limit: number) => {
+    const startIndex = (currentPage - 1) * limit;
+
+    return array.slice(startIndex, startIndex + limit);
+};

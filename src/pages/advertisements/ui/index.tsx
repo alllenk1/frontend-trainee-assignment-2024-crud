@@ -7,12 +7,13 @@ import { type ChangeEvent, useMemo, useState } from 'react';
 
 import { AdvertisementCreateModal } from '@/widgets/modals';
 
-import type { Advertisement, AdvertisementSortValue } from '@/entities/advertisements';
+import type { Advertisement, AdvertisementSortValues } from '@/entities/advertisements';
 import { useGetAdvertisementsQuery } from '@/entities/advertisements/api';
-import { filterAdvertisements, paginateAdvertisements } from '@/entities/advertisements/lib/helpers';
-import { AdvertisementLimitValue } from '@/entities/advertisements/types';
+import { filterAdvertisements } from '@/entities/advertisements/lib/helpers';
 import { AdvertisementsCards, AdvertisementsFilterForm, AdvertisementsSearchBar } from '@/entities/advertisements/ui';
+import type { LimitValues } from '@/entities/types';
 
+import { paginateArray } from '@/shared/helpers';
 import { SkeletonCards } from '@/shared/ui';
 
 import style from './index.module.scss';
@@ -20,8 +21,8 @@ import style from './index.module.scss';
 export const AdvertisementsPageComponent = () => {
     const [isOpenCreateModal, setOpenCreateModal] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [limit, setLimit] = useState<AdvertisementLimitValue>('10');
-    const [sortValue, setSortValue] = useState<AdvertisementSortValue | ''>('');
+    const [limit, setLimit] = useState<LimitValues>('10');
+    const [sortValue, setSortValue] = useState<AdvertisementSortValues | ''>('');
     const [searchString, setSearchString] = useState<string>('');
 
     const { data: advertisementsData, isLoading: isLoadingAdvertisements } = useGetAdvertisementsQuery();
@@ -32,7 +33,7 @@ export const AdvertisementsPageComponent = () => {
     );
 
     const paginatedAdvertisements = useMemo<Advertisement[]>(
-        () => paginateAdvertisements(filteredAdvertisements, currentPage, +limit),
+        () => paginateArray(filteredAdvertisements, currentPage, +limit),
         [filteredAdvertisements, currentPage, limit]
     );
 

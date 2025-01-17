@@ -1,10 +1,10 @@
-import type { Advertisement, AdvertisementSortValue } from '@/entities/advertisements';
+import type { Advertisement, AdvertisementSortValues } from '@/entities/advertisements';
 
 export const filterAdvertisements = (
     data: Advertisement[] | undefined,
     isLoading: boolean,
     searchString: string,
-    sortValue: AdvertisementSortValue | ''
+    sortValue: AdvertisementSortValues | ''
 ): Advertisement[] => {
     if (!isLoading && data) {
         let dataCopy: Advertisement[] = [...data];
@@ -24,10 +24,4 @@ export const filterAdvertisements = (
     }
 
     return [];
-};
-
-export const paginateAdvertisements = (array: Advertisement[], currentPage: number, limit: number) => {
-    const startIndex = (currentPage - 1) * limit;
-
-    return array.slice(startIndex, startIndex + limit);
 };

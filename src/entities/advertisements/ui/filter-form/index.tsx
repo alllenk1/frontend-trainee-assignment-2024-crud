@@ -2,17 +2,18 @@ import * as React from 'react';
 import { Box, Button, MenuItem } from '@mui/material';
 
 import { limitItems, sortItems } from '@/entities/advertisements';
+import type { LimitValues } from '@/entities/types';
 
 import { SelectComponent } from '@/shared/ui';
 
-import type { AdvertisementLimitValue, AdvertisementSortValue } from '../../types';
+import type { AdvertisementSortValues } from '../../types';
 import style from './index.module.scss';
 
 type AdvertisementsFormProps = {
-    limitValue: AdvertisementLimitValue;
-    sortValue: AdvertisementSortValue;
-    onChangeLimit: (value: AdvertisementLimitValue) => void;
-    onChangeSortValue: (value: AdvertisementSortValue) => void;
+    limitValue: LimitValues;
+    sortValue: AdvertisementSortValues;
+    onChangeLimit: (value: LimitValues) => void;
+    onChangeSortValue: (value: AdvertisementSortValues) => void;
     onChangeCreateModal: (value: boolean) => void;
 };
 
@@ -25,11 +26,11 @@ export const AdvertisementsFilterForm = ({
 }: AdvertisementsFormProps) => {
     return (
         <Box className={style.form} component="form">
-            <SelectComponent<AdvertisementLimitValue>
+            <SelectComponent<LimitValues>
                 label="Объявлений на странице"
                 value={limitValue}
                 onChangeValue={onChangeLimit}
-                onResetValue={() => onChangeLimit('' as AdvertisementLimitValue)}
+                onResetValue={() => onChangeLimit('' as LimitValues)}
             >
                 {limitItems.map((item) => (
                     <MenuItem key={item} value={item}>
@@ -37,11 +38,11 @@ export const AdvertisementsFilterForm = ({
                     </MenuItem>
                 ))}
             </SelectComponent>
-            <SelectComponent<AdvertisementSortValue>
+            <SelectComponent<AdvertisementSortValues>
                 label="Сортировать по"
                 value={sortValue}
                 onChangeValue={onChangeSortValue}
-                onResetValue={() => onChangeSortValue('' as AdvertisementSortValue)}
+                onResetValue={() => onChangeSortValue('' as AdvertisementSortValues)}
             >
                 {Object.entries(sortItems).map(([key, value]) => (
                     <MenuItem key={key} value={key}>
