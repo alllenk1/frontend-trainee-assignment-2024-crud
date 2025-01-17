@@ -29,8 +29,9 @@ export const AdvertisementsFilterForm = ({
             <SelectComponent<LimitValues>
                 label="Объявлений на странице"
                 value={limitValue}
+                defaultValue={10}
                 onChangeValue={onChangeLimit}
-                onResetValue={() => onChangeLimit('' as LimitValues)}
+                onResetValue={() => onChangeLimit(10 as LimitValues)}
             >
                 {limitItems.map((item) => (
                     <MenuItem key={item} value={item}>

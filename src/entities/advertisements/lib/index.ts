@@ -9,4 +9,4 @@ export const sortItems: Record<Exclude<AdvertisementSortValues, ''>, string> = {
     views: 'просмотрам',
 };
 
-export const limitItems: LimitValues[] = ['5', '10', '20'];
+export const limitItems: LimitValues[] = [5, 10, 20];

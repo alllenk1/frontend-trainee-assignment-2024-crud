@@ -19,7 +19,7 @@ import { SkeletonCards } from '@/shared/ui';
 
 export const OrdersPageComponent = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [limit, setLimit] = useState<LimitValues>('10');
+    const [limit, setLimit] = useState<LimitValues>(10);
     const [statusValue, setStatusValue] = useState<Order['status'] | ''>('');
     const [priceValue, setPriceValue] = useState<PriceSortItems | ''>('');
 
@@ -36,6 +36,9 @@ export const OrdersPageComponent = () => {
     );
 
     const pagesCount = Math.ceil(filteredOrders.length / +limit);
+
+    console.log('limit', limit);
+    console.log('paginatedOrders', paginatedOrders);
 
     return (
         <PageContainer title="Все заказы" breadcrumbs={[]}>

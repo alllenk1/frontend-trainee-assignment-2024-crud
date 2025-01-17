@@ -6,13 +6,14 @@ import { ReactNode } from 'react';
 
 type SelectComponentProps<T> = {
     label: string;
+    defaultValue?: string | number;
     value: T;
     onChangeValue: (value: T) => void;
     onResetValue: () => void;
     children: ReactNode;
 };
 
-export const SelectComponent = <T,>({ label, value, onChangeValue, onResetValue, children }: SelectComponentProps<T>) => {
+export const SelectComponent = <T,>({ label, value, defaultValue, onChangeValue, onResetValue, children }: SelectComponentProps<T>) => {
     return (
         <FormControl fullWidth>
             <InputLabel>{label}</InputLabel>
@@ -21,7 +22,7 @@ export const SelectComponent = <T,>({ label, value, onChangeValue, onResetValue,
                 value={value}
                 IconComponent={null as unknown as React.ElementType}
                 endAdornment={
-                    value ? (
+                    value && value !== defaultValue ? (
                         <InputAdornment position="end">
                             <IconButton sx={{ padding: '0' }} onClick={onResetValue}>
                                 <CloseIcon />
