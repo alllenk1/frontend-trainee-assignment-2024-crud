@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Личный кабинет продавца на маркетплейсе по мотивам [тестового задания на стажировку «Авито»](https://gitverse.ru/avito.tech/tech-internship/content/main/Tech%20Internships%20/Frontend/Frontend-trainee-assignment-2024/frontend-trainee-assignment-autumn-2024.md). Позволяет управлять своими объявлениями и заказами.
 
-## Getting Started
+## Стек
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=%2361DAFB) ![RTK Query](https://img.shields.io/badge/RTK%20Query-000000?style=for-the-badge&logo=redux&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white) [![Feature-Sliced Design][shields-fsd-domain]](https://feature-sliced.design/)
 
-First, run the development server:
+[shields-fsd-domain]: https://img.shields.io/badge/Feature--Sliced-Design?style=for-the-badge&color=F2F2F2&labelColor=262224&logoWidth=10&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAALFAAACxQGJ1n/vAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABISURBVHgB7dKxCQAgDETR0w2cws0cys2cwhEUBbsggikCuVekDHwSQFlYo7Q+8KnmtHdFWMdk2cl5wSsbxGSZw8dm8pX9ZHUTMBUgGU2F718AAAAASUVORK5CYII=
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Запуск
+1. Добавьте файл .env в корень проекта и заполните по примеру .env.example.
+2. `npm install`
+3. `npm run server`
+4. `npm run build`
+5. `npm run start`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Страница объявлений
+* Отображается список всех объявлений продавца.
+* Есть пагинация.
+* Можно выбрать количество объявлений на странице (по умолчанию 10).
+* Есть поиск по названию от трех сомволов.
+* Есть сортировка по цене/лайкам/просмотрам.
+* Можно перейти на страницу объявления по клику на карточку.
+* На карточке объявления выводится информация о нем: 
+    * картинка,
+    * название,
+    * стоимость,
+    * количество просмотров,
+    * количество лайков;
+* Есть модальное окно для создания новых объявлений 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Страница объявления
+* Выводится подробная информация об объявлении.
+* Можно редактировать и удалить объявление.
 
-## Learn More
+## Страница заказов
+* Выводится список заказов. 
+* Есть пагинация.
+* Есть сортировка по сумме заказа.
+* При клике на кнопку «Показать все объявления» открывается модальное окно со списком объявлений в заказе. При клике на объявление можно перейти на его страницу.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Панель навигации
+* Вкладка «Объявления» — переход на страницу объявлений.
+* Вкладка «Заказы» — переход на страницу заказов.
