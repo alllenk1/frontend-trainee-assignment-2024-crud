@@ -13,4 +13,4 @@ export type CreateAdvertisementArgs = Omit<Advertisement, 'id'>;
 export type UpdateAdvertisementArgs = { id: Advertisement['id']; body: Pick<Advertisement, 'name' | 'description' | 'imageUrl' | 'price'> };
 
 export type AdvertisementSortValue = 'priceIncrease' | 'priceDecrease' | 'likes' | 'views' | '';
-export type AdvertisementLimitValue = '5' | '10' | '20' | '50' | '';
+export type AdvertisementLimitValue = '5' | '10' | '20' | '50';

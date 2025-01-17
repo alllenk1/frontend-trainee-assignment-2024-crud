@@ -9,7 +9,7 @@ export const filterAdvertisements = (
     if (!isLoading && data) {
         let dataCopy: Advertisement[] = [...data];
 
-        if (searchString) dataCopy = dataCopy.filter((item) => item.name.toLowerCase().includes(searchString.toLowerCase()));
+        if (searchString.length >= 3) dataCopy = dataCopy.filter((item) => item.name.toLowerCase().includes(searchString.toLowerCase()));
         if (sortValue) {
             if (sortValue === 'priceDecrease' || sortValue === 'priceIncrease') {
                 dataCopy.sort((item1, item2) => (sortValue === 'priceDecrease' ? item2.price - item1.price : item1.price - item2.price));
@@ -27,8 +27,6 @@ export const filterAdvertisements = (
 };
 
 export const paginateAdvertisements = (array: Advertisement[], currentPage: number, limit: number) => {
-    if (!limit) limit = 10;
-
     const startIndex = (currentPage - 1) * limit;
 
     return array.slice(startIndex, startIndex + limit);
