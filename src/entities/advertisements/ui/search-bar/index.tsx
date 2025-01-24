@@ -1,4 +1,3 @@
-import * as React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { FormControl, IconButton, Input, InputAdornment } from '@mui/material';

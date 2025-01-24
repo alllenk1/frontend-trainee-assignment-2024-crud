@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Card, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';

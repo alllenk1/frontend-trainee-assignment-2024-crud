@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box, Button, MenuItem } from '@mui/material';
 
 import { limitItems, sortItems } from '@/entities/advertisements';
