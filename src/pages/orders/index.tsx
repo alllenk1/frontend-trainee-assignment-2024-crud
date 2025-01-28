@@ -5,7 +5,7 @@ import { Pagination } from '@mui/material';
 import { PageContainer } from '@toolpad/core';
 import { ChangeEvent, useMemo, useState } from 'react';
 
-import style from '@/pages/advertisements/ui/index.module.scss';
+import style from '@/pages/advertisements/index.module.scss';
 
 import { type Order, OrdersCards } from '@/entities/orders';
 import { useGetOrdersQuery } from '@/entities/orders/api';
@@ -36,9 +36,6 @@ export const OrdersPageComponent = () => {
     );
 
     const pagesCount = Math.ceil(filteredOrders.length / +limit);
-
-    console.log('limit', limit);
-    console.log('paginatedOrders', paginatedOrders);
 
     return (
         <PageContainer title="Все заказы" breadcrumbs={[]}>

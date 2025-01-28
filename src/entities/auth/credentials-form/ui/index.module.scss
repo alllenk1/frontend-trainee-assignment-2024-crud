@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.button {
+    height: 40px;
+}
+
+.errorContainer {
+    display: grid;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+
+    order: 2;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.42px;
+
+    transition: grid-template-rows 0.2s ease;
+
+    .error {
+        min-height: 0;
+
+        font-size: 12px;
+
+        transition: opacity 0.2s ease;
+        color: #f44336;
+    }
+}
+
+.errorContainerHidden {
+    grid-template-rows: 0fr;
+
+    .error {
+        opacity: 0;
+    }
+}

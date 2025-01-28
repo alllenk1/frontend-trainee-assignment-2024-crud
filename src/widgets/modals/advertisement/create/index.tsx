@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
 
-import { AdvertisementsForm, type FormSchema } from '@/features/advertisements/form';
+import { AdvertisementsForm, type FormSchema } from '@/features/advertisement-form';
 
 import { useCreateAdvertisementMutation } from '@/entities/advertisements';
 
